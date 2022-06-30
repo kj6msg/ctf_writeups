@@ -5,7 +5,7 @@ Can you get the flag? Reverse engineer this [Python program](unpackme.flag.py).
 (None)
 ## Solution
 1. Check out the program.
-```
+```python
 import base64
 from cryptography.fernet import Fernet
 
@@ -20,13 +20,12 @@ plain = f.decrypt(payload)
 exec(plain.decode())
 
 ```
-2. Modify the program to print the plain text version of the payload instead of executing it.
-```
+2. Modify the program to print the plain text version of the payload instead of executing it. Run it.
+```python
 # exec(plain.decode())
 print(plain.decode())
 ```
-3. Run the modified program to get the flag.
-```
+```console
 % python unpackme.flag.py
 
 pw = input('What\'s the password? ')
@@ -35,6 +34,4 @@ if pw == 'batteryhorse':
   print('picoCTF{175_chr157m45_85f5d0ac}')
 else:
   print('That password is incorrect.')
-
-
 ```

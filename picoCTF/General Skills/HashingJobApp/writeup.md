@@ -1,18 +1,18 @@
 # HashingJobApp
 ## Description
-If you want to hash with the best, beat this test! ```nc saturn.picoctf.net 57689```
+If you want to hash with the best, beat this test! `nc saturn.picoctf.net 57689`
 ## Hints
 1. You can use a commandline tool or web app to hash text
 2. Press Ctrl and c on your keyboard to close your connection and return to the command prompt.
 ## Solution
 1. Connect to the server.
-```
+```console
 % nc saturn.picoctf.net 57689
 Please md5 hash the text between quotes, excluding the quotes: 'Microsoft'
 Answer: 
 ```
-2. Hash the text and copy the result. I use the command ```echo -n "Microsoft" | md5 | pbcopy``` in another terminal window.
-```
+2. Hash the text and copy the result. I use the command `echo -n "Microsoft" | md5 | pbcopy` in another terminal window.
+```console
 140864078aeca1c7c35b4beb33c53c34
 140864078aeca1c7c35b4beb33c53c34
 Correct.
@@ -20,7 +20,7 @@ Please md5 hash the text between quotes, excluding the quotes: 'computer hackers
 Answer: 
 ```
 3. Continue until you get the flag.
-```
+```console
 1034abc8025edcc22f58c35abc21e36f
 1034abc8025edcc22f58c35abc21e36f
 Correct.

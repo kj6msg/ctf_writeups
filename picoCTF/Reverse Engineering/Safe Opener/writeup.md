@@ -1,11 +1,11 @@
 # Safe Opener
 ## Description
-Can you open this safe? I forgot the key to my safe but this [program](SafeOpener.java) is supposed to help me with retrieving the lost key. Can you help me unlock my safe? Put the password you recover into the picoCTF flag format like: ```picoCTF{password}```
+Can you open this safe? I forgot the key to my safe but this [program](SafeOpener.java) is supposed to help me with retrieving the lost key. Can you help me unlock my safe? Put the password you recover into the picoCTF flag format like: `picoCTF{password}`
 ## Hints
 (None)
 ## Solution
-1. Looks like the string is stored encoded in ```openSafe``` as ```encodedkey```.
-```
+1. Looks like the string is encoded in `openSafe` as `encodedkey`.
+```java
 public static boolean openSafe(String password) {
 	String encodedkey = "cGwzYXMzX2wzdF9tM18xbnQwX3RoM19zYWYz";
 	
@@ -21,6 +21,6 @@ public static boolean openSafe(String password) {
 ```
 2. Looks like base64. Decode it.
 ```
-% echo -n cGwzYXMzX2wzdF9tM18xbnQwX3RoM19zYWYz | base64 -d | xargs printf "picoCTF{%s}\n"
+% echo -n cGwzYXMzX2wzdF9tM18xbnQwX3RoM19zYWYz | base64 -d | xargs printf "picoCTF{%s}"
 picoCTF{pl3as3_l3t_m3_1nt0_th3_saf3}
 ```

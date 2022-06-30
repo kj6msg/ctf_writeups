@@ -1,13 +1,13 @@
 # ARMssembly 0
 ## Description
-What integer does this program print with arguments ```1765227561``` and ```1830628817```?\
-File: [chall.S](chall.S)\
+What integer does this program print with arguments `1765227561` and `1830628817`?  
+File: [chall.S](chall.S)  
 Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
 ## Hints
 1. Simple compare
 ## Solution
-1. The function to look at is ```func1```.
-```
+1. Let's take a look at the function `func1`. The first parameter is passed in `w0` and the second in `w1`.
+```arm
 func1:
 	sub	sp, sp, #16
 	str	w0, [sp, 12]
@@ -24,15 +24,29 @@ func1:
 	add	sp, sp, 16
 	ret
 ```
-2. Breaking it down to pseudo-code makes the logic clearer.
+2. Let's rewrite the code in C.
+```c
+int func1(int w0, int w1)
+{
+	int sp12 = w0;
+	int sp8 = w1;
+	w1 = sp12;
+	w0 = sp8;
+
+	if(w1 <= w0)
+		return sp8;
+	else
+		return sp12;
+}
 ```
-int func1(int a, int b)
-    if(a <= b)
-        return b
+3. There's some unnecessary swapping of variables, let's simplify it.
+```c
+int func1(int w0, int w1)
+{
+	if(w0 <= w1)
+        return w1;
     else
-        return a
+        return w0;
+}
 ```
-3. The function is called as ```func1(1765227561, 1830628817)``` which will return ```1830628817```. Convert it to hex for the flag format.
-```
-picoCTF{6d1d2dd1}
-```
+4. Calling the function as `func1(1765227561, 1830628817)` returns `1830628817`. Convert it to hex for the flag: `picoCTF{6d1d2dd1}`

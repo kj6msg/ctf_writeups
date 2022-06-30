@@ -3,15 +3,15 @@
 Can you crack the password to get the flag? Download the password checker [here](level2.py) and you'll need the encrypted [flag](level2.flag.txt.enc) in the same directory too.
 ## Hints
 1. Does that encoding look familiar?
-2. The ```str_xor``` function does not need to be reverse engineered for this challenge.
+2. The `str_xor` function does not need to be reverse engineered for this challenge.
 ## Solution
 1. The password is visible on line 18 of the password checker.
-```
-    if( user_pw == chr(0x33) + chr(0x39) + chr(0x63) + chr(0x65) ):
-        print("Welcome back... your flag, user:")
+```python
+if( user_pw == chr(0x33) + chr(0x39) + chr(0x63) + chr(0x65) ):
+    print("Welcome back... your flag, user:")
 ```
 2. Print the valid password and run the script.
-```
+```console
 % python -c "print(chr(0x33) + chr(0x39) + chr(0x63) + chr(0x65))"
 39ce
 % python level2.py

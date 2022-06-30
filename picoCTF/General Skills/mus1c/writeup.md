@@ -26,4 +26,4 @@ Program completed in 95 ms
 ```
 rrrocknrn0113r
 ```
-3. The flag is ```picoCTF{rrrocknrn0113r}```.
+3. The flag is `picoCTF{rrrocknrn0113r}`.

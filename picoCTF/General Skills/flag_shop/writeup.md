@@ -1,11 +1,11 @@
 # flag_shop
 ## Description
-There's a flag shop selling stuff, can you buy a flag? [Source](store.c). Connect with ```nc jupiter.challenges.picoctf.org 44566```.
+There's a flag shop selling stuff, can you buy a flag? [Source](store.c). Connect with `nc jupiter.challenges.picoctf.org 44566`.
 ## Hints
 1. Two's compliment can do some weird things when numbers get really big!
 ## Solution
-1. Look at the code for purchasing a knockoff flag, specifically how it doesn't check max values.
-```
+1. Look at the code for purchasing a knockoff flag (starting at line 37). It doesn't check max values.
+```c
 if(number_flags > 0){
     int total_cost = 0;
     total_cost = 900*number_flags;
@@ -19,8 +19,8 @@ if(number_flags > 0){
     }
 }
 ```
-2. The largest positive number represented by a 32-bit signed integer is 2,147,483,647. A knockoff flag costs 900, which means if we buy a little more than 2.386M of them we will force an overflow into negative values and end up adding money to our account.
-```
+2. The largest positive number represented by a 32-bit signed integer is `2,147,483,647`. A knockoff flag costs `900`, which means if we buy a little more than `2.386M` of them we will force an overflow into negative values and end up adding money to our account.
+```console
 % jupiter.challenges.picoctf.org 44566
 Welcome to the flag exchange
 We sell flags

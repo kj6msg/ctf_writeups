@@ -5,14 +5,14 @@ Can you look at the data in this binary: [static](static)? This [BASH script](lt
 (none)
 ## Solution 1
 1. Check the file type of the binary.
-```
+```console
 % file static
 static: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically
 linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0,
 BuildID[sha1]=33934f7b8aea8e359749ed57dca4cd26d6059acf, not stripped
 ```
 2. Dump the strings contained in the binary.
-```
+```console
 % strings static
 /lib64/ld-linux-x86-64.so.2
 libc.so.6
@@ -26,7 +26,7 @@ picoCTF{d15a5m_t34s3r_1e6a7731}
 ```
 ## Solution 2
 1. Run the BASH script.
-```
+```console
 % chmod +x ltdis.sh
 % ./ltdis.sh
 Attempting disassembly of  ...
@@ -40,8 +40,8 @@ Disassembly successful! Available at: static.ltdis.x86_64.txt
 Ripping strings from binary with file offsets...
 Any strings found in static have been written to static.ltdis.strings.txt with file offset
 ```
-2. View ```static.ltdis.strings.txt```.
-```
+2. View `static.ltdis.strings.txt`.
+```console
 % cat static.ltdis.strings.txt
 238 /lib64/ld-linux-x86-64.so.2
 361 libc.so.6

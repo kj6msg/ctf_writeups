@@ -4,8 +4,8 @@ This vault uses some complicated arrays! I hope you can make sense of it, specia
 ## Hints
 1. Look up the charAt() method online.
 ## Solution
-1. Look at ```checkPassword```. The password is still in the clear, just scrambled a little.
-```
+1. Look at `checkPassword`. The password is in the clear, just scrambled a little.
+```java
 public boolean checkPassword(String password) {
 	return password.length() == 32 &&
 			password.charAt(0)  == 'd' &&
@@ -42,7 +42,4 @@ public boolean checkPassword(String password) {
 			password.charAt(31) == 'e';
 }
 ```
-2. Reorder the letters to get the flag.
-```
-picoCTF{d35cr4mbl3_tH3_cH4r4cT3r5_75092e}
-```
+2. Reorder the letters to get the flag: `picoCTF{d35cr4mbl3_tH3_cH4r4cT3r5_75092e}`

@@ -1,13 +1,13 @@
 # ARMssembly 2
 ## Description
-What integer does this program print with argument ```3848786505```?\
-File: [chall_2.S](chall_2.S)\
+What integer does this program print with argument `3848786505`?  
+File: [chall_2.S](chall_2.S)  
 Flag format: picoCTF{XXXXXXXX} -> (hex, lowercase, no 0x, and 32 bits. ex. 5614267 would be picoCTF{0055aabb})
 ## Hints
 1. Loops
 ## Solution
-1. Look at ```func1```.
-```
+1. Look take a look at the function `func1`. The parameter is passed in `w0`.
+```arm
 func1:
 	sub	sp, sp, #32
 	str	w0, [sp, 12]
@@ -30,18 +30,31 @@ func1:
 	add	sp, sp, 32
 	ret
 ```
-2. Breaking it down to pseudo-code makes the logic clearer.
-```
-int func(int param0)
-	int retval = 0
+2. Converting it to C makes the logic clearer: it's a loop that multiplies the input parameter by three through addition.
+```c
+int func1(int w0)
+{
+	int sp12 = w0;
+	int sp24 = 0;
+	int sp28 = 0;
 
-	for(int i = 0; i < param0; ++i)
+	while(sp28 < sp12)
+	{
+		sp24 += 3;
+		++sp28;
+	}
+}
+```
+3. Let's simplify the above C code.
+```c
+int func1(int w0)
+{
+	int retval = 0;
+
+	for(int i = 0; i < w0; ++i)
 		retval += 3;
 
-	return retval
+	return retval;
+}
 ```
-3. The function arithmetically multiplies the input by three. Calling it with ```3848786505``` yields ```11546359515```, which is larger than a 32-bit register can hold. Mask the result with 0xFFFFFFFF and we have the flag. Python interpreter code is below.
-```
->>> print("picoCTF{" + hex((3 * 3848786505) & 0xffffffff) + "}")
-picoCTF{0xb03776db}
-```
+4. Calling `func1(3848786505)` returns `11546359515` (`0x2B03776DB`), however that's larger than a 32-bit register can hold (`0xFFFFFFFF`). Mask the result with 0xFFFFFFFF and we have the flag: `picoCTF{0xb03776db}`

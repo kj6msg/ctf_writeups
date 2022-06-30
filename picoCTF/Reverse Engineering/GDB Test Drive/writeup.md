@@ -1,22 +1,22 @@
 # GDB Test Drive
 ## Description
 Can you get the flag? Download this [binary](gdbme). Here's the test drive instructions:
-* ```$ chmod +x gdbme```
-* ```$ gdb gdbme```
-* ```(gdb) layout asm```
-* ```(gdb) break *(main+99)```
-* ```(gdb) run```
-* ```(gdb) jump *(main+104)```
+* `$ chmod +x gdbme`
+* `$ gdb gdbme`
+* `(gdb) layout asm`
+* `(gdb) break *(main+99)`
+* `(gdb) run`
+* `(gdb) jump *(main+104)`
 ## Hints
 (none)
 ## Solution
 1. Follow the first three test drive instructions.
-```
+```console
 % chmod +x gdbme
 % gdb gdbme
 (gdb) layout asm
 ```
-2. It seems we're bypassing a call to ```sleep``` with the remaining steps.
+2. It seems we're bypassing a call to ```sleep``` with the remaining test drive steps.
 ```
 0x55555555532a <main+99>        call   0x555555555110 <sleep@plt>
 0x55555555532f <main+104>       lea    rax,[rbp-0x30]
