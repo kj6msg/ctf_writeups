@@ -1,0 +1,39 @@
+# vault-door-6
+## Description
+This vault uses an XOR encryption scheme. The source code for this vault is here: [VaultDoor6.java](VaultDoor6.java)
+## Hints
+1. If X ^ Y = Z, then Z ^ Y = X. Write a program that decrypts the flag based on this fact.
+## Solution
+1. This is straight forward. Just reverse the XOR.
+```java
+public boolean checkPassword(String password) {
+    if (password.length() != 32) {
+        return false;
+    }
+    byte[] passBytes = password.getBytes();
+    byte[] myBytes = {
+        0x3b, 0x65, 0x21, 0xa , 0x38, 0x0 , 0x36, 0x1d,
+        0xa , 0x3d, 0x61, 0x27, 0x11, 0x66, 0x27, 0xa ,
+        0x21, 0x1d, 0x61, 0x3b, 0xa , 0x2d, 0x65, 0x27,
+        0xa , 0x6c, 0x61, 0x6d, 0x37, 0x6d, 0x6d, 0x6d,
+    };
+    for (int i=0; i<32; i++) {
+        if (((passBytes[i] ^ 0x55) - myBytes[i]) != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+```
+2. Run the script below to decode.
+```python
+encoded = [0x3b, 0x65, 0x21, 0xa , 0x38, 0x0 , 0x36, 0x1d, 0xa , 0x3d, 0x61, 0x27, 0x11, 0x66, 0x27, 0xa, 0x21, 0x1d, 0x61, 0x3b, 0xa, 0x2d, 0x65, 0x27, 0xa , 0x6c, 0x61, 0x6d, 0x37, 0x6d, 0x6d, 0x6d]
+decoded = "".join(chr(encoded[n] ^ 0x55) for n in range(32))
+
+print("picoCTF{" + decoded + "}")
+
+```
+```console
+% python decode.py
+picoCTF{n0t_mUcH_h4rD3r_tH4n_x0r_948b888}
+```
